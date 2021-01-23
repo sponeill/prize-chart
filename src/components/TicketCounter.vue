@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     showPrizes: function () {
-      console.log("Button clicked:" + this.ticketNumber);
       this.$emit('ticketsAdded', this.ticketNumber);
     },
   },
@@ -40,7 +39,7 @@ export default {
 .ticket-window {
   border-radius: 15px;
   display: inherit;
-  margin-top: 100px;
+  margin-top: 25px;
 }
 
 .input-col {

@@ -1,53 +1,118 @@
 <template>
   <div id="app">
     <b-row id="title-row">
-      <b-col class="text-right" lg=3>
+      <b-col class="text-right" lg="4">
         <img alt="Riley" id="riley" src="./assets/riley.png" />
       </b-col>
-      <b-col class="text-left" lg=2>
-        <h1>Riley's</h1>
-        <h1>Prize</h1>
-        <h1>Shop</h1>
-      </b-col>
-      <b-col lg=4>
+      <b-col lg="4">
+        <h1>Riley's Prize Shop</h1>
         <TicketCounter @ticketsAdded="ticketsAdded($event)"></TicketCounter>
+      </b-col>
+      <b-col>
+        <div id="ticket">
+          <p id="ticket-counter">
+            <span>{{ currentTickets }}</span> Tickets Left
+          </p>
+        </div>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
         <Prize
-          title="First Prize"
-          imgSrc="https://via.placeholder.com/175"
+          title="Stay Up Late"
+          imgSrc="../img/stay_up.png"
+          :ticketCost="3"
+          :currentTickets="this.currentTickets"
+          url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
+        />
+      </b-col>
+      <b-col>
+        <Prize
+          title="Donuts"
+          imgSrc="../img/donuts.png"
+          :ticketCost="4"
+          :currentTickets="this.currentTickets"
+          url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
+        />
+      </b-col>
+      <b-col>
+        <Prize
+          title="Smoothies"
+          imgSrc="../img/pulp.png"
+          :ticketCost="4"
+          :currentTickets="this.currentTickets"
+          url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
+        />
+      </b-col>
+      <b-col>
+        <Prize
+          title="Riley Picks Dinner"
+          imgSrc="../img/dinner.png"
           :ticketCost="5"
-          :currentTickets= this.currentTickets
+          :currentTickets="this.currentTickets"
           url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
+        />
+      </b-col>
+    </b-row>
+    <b-row id="bottom-row">
+      <b-col>
+        <Prize
+          title="Sonic The Hedgehog"
+          imgSrc="../img/sonic.png"
+          :ticketCost="7"
+          :currentTickets="this.currentTickets"
+          url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
         />
       </b-col>
       <b-col>
         <Prize
-          title="Second Prize"
-          imgSrc="https://via.placeholder.com/175"
-          :ticketCost="10"
-          :currentTickets= this.currentTickets
-          url=""
-        />
-      </b-col>
-      <b-col>
-        <Prize
-          title="Third Prize"
-          imgSrc="https://via.placeholder.com/175"
+          title="Barbie Car"
+          imgSrc="../img/barbie_car.png"
           :ticketCost="15"
-          :currentTickets= this.currentTickets
+          :currentTickets="this.currentTickets"
           url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
         />
       </b-col>
       <b-col>
         <Prize
-          title="Fourth Prize"
-          imgSrc="https://via.placeholder.com/175"
-          :ticketCost="20"
-          :currentTickets= this.currentTickets
+          title="Doll Accessories"
+          imgSrc="../img/american_girl.png"
+          :ticketCost="15"
+          :currentTickets="this.currentTickets"
           url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
+        />
+      </b-col>
+      <b-col>
+        <Prize
+          title="Princess Dress"
+          imgSrc="../img/princess_dress.png"
+          :ticketCost="20"
+          :currentTickets="this.currentTickets"
+          url=""
+          :prizesShown="this.prizesShown"
+          @prizeSelected="prizeSelected($event)"
+          @prizeUnselected="prizeUnselected($event)"
         />
       </b-col>
     </b-row>
@@ -76,15 +141,22 @@ export default {
     TicketCounter,
   },
   data: function () {
-      return {
-        currentTickets: 0,
-      };
+    return {
+      currentTickets: 0,
+      prizesShown: false,
+    };
   },
   methods: {
     ticketsAdded: function (ticketNumber) {
       this.currentTickets = ticketNumber;
-      console.log("Parent Ticket Count: " + ticketNumber);
-    }
+      this.prizesShown = true;
+    },
+    prizeSelected: function (cost) {
+      this.currentTickets = this.currentTickets - cost;
+    },
+    prizeUnselected: function (cost) {
+      this.currentTickets = this.currentTickets + cost;
+    },
   },
 };
 </script>
@@ -103,11 +175,32 @@ export default {
   margin-bottom: 50px;
 }
 
+#bottom-row {
+  margin-bottom: 40px;
+}
+
+#ticket {
+  background-image: url("./assets/ticket.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  margin-top: 60px;
+  width: 350px;
+  height: 150px;
+}
+
+#ticket-counter {
+  padding-top: 48px;
+  font-weight: bold;
+  font-size: 1.75rem;
+  text-align: left;
+  padding-left: 50px;
+}
+
 h1 {
-  margin-bottom: 25px;
   color: white;
-  font-family: "Pacifico", cursive;
-  font-size: 4rem;
+  font-family: "Butterfly Kids", cursive;
+  font-size: 6rem;
 }
 
 #riley {
