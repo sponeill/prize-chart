@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card :title= title class="prize-card">
+    <b-card :title= title class="prize-card animate__animated animate__fadeInUp animate__delay-2s">
       <b-row>
         <b-col>
           <img :src="imgSrc" /><br />
@@ -8,9 +8,10 @@
       </b-row>
       <b-row class="ticket-row">
         <b-col>
-          {{ numberOfTickets }} Tickets!
+          {{ ticketCost }} Tickets!
         </b-col>
       </b-row>
+      Current Tickets: {{ currentTickets }}
     </b-card>
   </div>
 </template>
@@ -21,7 +22,8 @@ export default {
   props: {
     title: String,
     imgSrc: String,
-    numberOfTickets: Number,
+    ticketCost: Number,
+    currentTickets: Number,
     url: String,
   },
 };
