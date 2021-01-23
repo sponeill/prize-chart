@@ -69,8 +69,8 @@
     <b-row id="bottom-row">
       <b-col>
         <Prize
-          title="Sonic The Hedgehog"
-          imgSrc="../img/sonic.png"
+          title="Sing"
+          imgSrc="../img/sing.png"
           :ticketCost="7"
           :currentTickets="this.currentTickets"
           url=""
