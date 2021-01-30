@@ -69,8 +69,8 @@
     <b-row id="bottom-row">
       <b-col>
         <Prize
-          title="Sing"
-          imgSrc="../img/sing.png"
+          title="The War With Grandpa"
+          imgSrc="../img/war_grandpa.png"
           :ticketCost="7"
           :currentTickets="this.currentTickets"
           url=""
