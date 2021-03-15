@@ -69,8 +69,8 @@
     <b-row id="bottom-row">
       <b-col>
         <Prize
-          title="The War With Grandpa"
-          imgSrc="../img/war_grandpa.png"
+          title="Ghost Busters 2"
+          imgSrc="../img/busters2.png"
           :ticketCost="7"
           :currentTickets="this.currentTickets"
           url=""
@@ -105,9 +105,9 @@
       </b-col>
       <b-col>
         <Prize
-          title="Princess Dress"
-          imgSrc="../img/princess_dress.png"
-          :ticketCost="20"
+          title="Ghost Busters Game"
+          imgSrc="../img/ghosts.png"
+          :ticketCost="15"
           :currentTickets="this.currentTickets"
           url=""
           :prizesShown="this.prizesShown"
